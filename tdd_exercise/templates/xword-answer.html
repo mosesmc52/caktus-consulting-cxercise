@@ -1,0 +1,36 @@
+{% extends "./base.html" %}
+
+{% block content %}
+<div class="relative h-screen">
+  <div class="absolute top-1/3 left-1/2 transform -translate-x-1/2">
+    <header>
+            {% if clue_attempt_count %}
+                <h3 class="text-base font-semibold leading-7 text-gray-900">{{clue.entry.entry_text}} is the correct answer! You have now answered {{clue_correct_answered_count}} (of {{clue_attempt_count}}) clues correctly</h3>
+            {% endif %}
+            {% if is_unique_appearance %}
+                <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">{{clue.entry.entry_text}} only appearance of this clue</p>
+            {% endif %}
+    </header>
+    <main class=" mt-4 w-96">
+        <table class="min-w-full divide-y divide-gray-300">
+          <thead>
+            <tr>
+              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 lg:pl-8">Count</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Entry</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200 bg-white">
+              {% for entry in entry_counts %}
+                <tr>
+                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8">{{ entry.count}}</td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ entry.entry__entry_text}}</td>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+    </main>
+    </div>
+</div>
+
+{% endblock %}

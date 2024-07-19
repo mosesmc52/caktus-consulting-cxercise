@@ -13,9 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
+import xword_data.views
 from django.contrib import admin
 from django.urls import path
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+    path("answer/<int:clue_id>/", xword_data.views.answer, name="xword-answer"),
+    path("", xword_data.views.drill, name="xword-drill"),
 ]
